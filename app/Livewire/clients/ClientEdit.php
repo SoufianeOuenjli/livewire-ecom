@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Clients;
 
 use Livewire\Component;
 use App\Models\Client;
@@ -59,6 +59,6 @@ class ClientEdit extends Component
 
     public function render()
     {
-        return view('livewire.client-edit');
+        return view('livewire.clients.client-edit');
     }
 }

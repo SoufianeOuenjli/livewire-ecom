@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Clients;
 
 use App\Models\Client;
 use Livewire\Component;
@@ -49,6 +49,6 @@ class ClientList extends Component
             ->orWhere('adresse', 'like', '%' . $this->search . '%')
             ->paginate(6);
 
-        return view('livewire.client-list', compact('clients'));
+        return view('livewire.clients.client-list', compact('clients'));
     }
 }

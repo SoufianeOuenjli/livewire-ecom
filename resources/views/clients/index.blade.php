@@ -1,3 +1,3 @@
 <x-layouts.app :title="__('Clients')">
-    <livewire:client-list />
+    <livewire:clients.client-list />
 </x-layouts.app>

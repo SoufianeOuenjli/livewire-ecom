@@ -10,7 +10,7 @@
             class="w-1/4 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white dark:border-gray-600"
         />
     </div>
-        <a href="{{ route('clients.create') }}" class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600" wire:navigate>
+        <a class="bg-blue-500 text-white p-2 rounded-lg hover:bg-yellow-600" href="{{ route('clients.create') }}"  wire:navigate>
             <x-heroicon-o-plus class="w-6 h-6" />
         </a>
     </div>
@@ -34,10 +34,10 @@
                     <td class="border px-4 py-2">{{ $client->adresse }}</td>
                     <td class="border px-2 py-1">
                         <div class="flex space-x-2">
-                            <a  href="{{ route('clients.edit', $client->id) }}" class="bg-yellow-500 text-white p-2 rounded-lg hover:bg-yellow-600" wire:navigate>
+                            <a  href="{{ route('clients.edit', $client->id) }}" class="bg-yellow-500 text-white p-2 rounded-lg inline-block hover:bg-blue-600" wire:navigate>
                                 <x-heroicon-o-pencil class="w-3 h-3" />
                             </a>
-                            <button wire:click="deleteClient({{ $client->id }})" class="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600">
+                            <button wire:click="deleteClient({{ $client->id }})" class="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 cursor-pointer">
                                 <x-heroicon-o-trash class="w-3 h-3" />
                             </button>
                         </div>
@@ -78,12 +78,25 @@
     });
 
     // Listen for 'swal:success' to show success message after deletion
-    Livewire.on('swal:success', (message) => {
-        Swal.fire(
-            'Deleted!',
-            message,
-            'success'
-        );
+    Livewire.on('swal:success', (event) => {
+        const type = event[0].type;
+        const message = event[0].message;
+        const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
+        Toast.fire({
+        icon: type,
+        title: message
+        });
+
     });
 </script>
 @endscript

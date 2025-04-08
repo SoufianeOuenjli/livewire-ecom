@@ -44,11 +44,15 @@ class ClientCreate extends Component
         // Optionally reset the form
         $this->reset();
 
-        // Provide feedback to the user (optional)
-        session()->flash('message', 'Client successfully created!');
 
-        // Optionally redirect (if you want to redirect after success)
-        // return redirect()->route('clients.index');
+        // Redirect to the index
+        // Provide feedback to the user (optional)
+        $this->dispatch('swal:success', [
+            'message' => 'Client créé avec succès!'
+        ]);
+        return $this->redirectRoute('clients.index', navigate: true);
+
+
     }
 
     public function render()

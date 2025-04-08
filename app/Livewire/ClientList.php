@@ -33,17 +33,12 @@ class ClientList extends Component
         // dd('hahaha');
         // dd($id);
        Client::find($id)[0]->delete();
-        // dd($client);
-        // if ($client) {
-        //     $client->delete();
-        //     $this->dispatch('swal:success', [
-        //         'message' => 'Client deleted successfully!'
-        //     ]);
-        // } else {
-        //     $this->dispatch('swal:error', [
-        //         'message' => 'Client not found!'
-        //     ]);
-        // }
+       // Provide feedback to the user (optional)
+       $this->dispatch('swal:success', [
+            'type' => 'success',
+            'message' => 'Client supprimé avec succès !',
+        ]);
+
     }
 
     public function render()

@@ -2,9 +2,10 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
-use Livewire\WithPagination;
 use App\Models\Client;
+use Livewire\Component;
+use Livewire\Attributes\On;
+use Livewire\WithPagination;
 
 class ClientList extends Component
 {
@@ -20,7 +21,29 @@ class ClientList extends Component
     }
     public function deleteClient($id)
     {
-        Client::findOrFail($id)->delete();
+        $this->dispatch('swal:confirm', [
+            'id' => $id,
+        ]);
+
+    }
+
+    #[On('clientDeleted')]
+    public function deleteClientConfirmed($id)
+    {
+        // dd('hahaha');
+        // dd($id);
+       Client::find($id)[0]->delete();
+        // dd($client);
+        // if ($client) {
+        //     $client->delete();
+        //     $this->dispatch('swal:success', [
+        //         'message' => 'Client deleted successfully!'
+        //     ]);
+        // } else {
+        //     $this->dispatch('swal:error', [
+        //         'message' => 'Client not found!'
+        //     ]);
+        // }
     }
 
     public function render()

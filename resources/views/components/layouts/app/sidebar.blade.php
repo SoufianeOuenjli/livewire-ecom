@@ -132,37 +132,5 @@
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-        <script>
-            // Listen for 'swal:confirm' event to show SweetAlert confirmation dialog
-            Livewire.on('swal:confirm', (id) => {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // If confirmed, call Livewire to delete the client
-                        Livewire.emit('deleteConfirmed', id);
-                    }
-                });
-            });
-
-            // Listen for 'swal:success' to show success message after deletion
-            Livewire.on('swal:success', (message) => {
-                Swal.fire(
-                    'Deleted!',
-                    message,
-                    'success'
-                );
-            });
-        </script>
-
-
     </body>
 </html>

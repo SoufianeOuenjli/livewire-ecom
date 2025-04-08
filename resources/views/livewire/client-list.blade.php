@@ -37,7 +37,7 @@
                             <a  href="{{ route('clients.edit', $client->id) }}" class="bg-yellow-500 text-white p-2 rounded-lg hover:bg-yellow-600" wire:navigate>
                                 <x-heroicon-o-pencil class="w-3 h-3" />
                             </a>
-                            <button wire:confirm="Are you sure you want to delete this post?" wire:click="deleteClient({{ $client->id }})" class="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600">
+                            <button wire:click="deleteClient({{ $client->id }})" class="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600">
                                 <x-heroicon-o-trash class="w-3 h-3" />
                             </button>
                         </div>
@@ -57,3 +57,33 @@
         {{ $clients->links() }}
     </div>
 </div>
+@script
+<script>
+    // Listen for 'swal:confirm' event to show SweetAlert confirmation dialog
+    $wire.on('swal:confirm', (id) => {
+        Swal.fire({
+            title: '  tes-vous sur?',
+            text: "Vous ne pourrez pas annuler cela!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Oui, supprimez-le!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If confirmed, call Livewire to delete the client
+                $wire.dispatch('clientDeleted', id);
+            }
+        });
+    });
+
+    // Listen for 'swal:success' to show success message after deletion
+    Livewire.on('swal:success', (message) => {
+        Swal.fire(
+            'Deleted!',
+            message,
+            'success'
+        );
+    });
+</script>
+@endscript

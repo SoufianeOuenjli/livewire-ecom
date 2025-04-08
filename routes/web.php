@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\ClientController;
-use App\Livewire\Settings\Appearance;
-use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Livewire\Settings\Password;
+use App\Livewire\Settings\Appearance;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\FournisseurController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Route::get('clients', [ClientController::class, 'index'])->name('clients.index');
     Route::resource('clients', ClientController::class);
+    Route::resource('fournisseurs', FournisseurController::class);
 
 });
 

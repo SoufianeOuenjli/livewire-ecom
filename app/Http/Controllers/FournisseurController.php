@@ -2,57 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fournisseur;
 use Illuminate\Http\Request;
 
 class FournisseurController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $fournisseurs = \App\Models\Fournisseur::paginate(6);
-        return view('fournisseurs.index', compact('fournisseurs'));
+        //
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        return view('fournisseurs.create');
+        //
     }
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:fournisseurs',
-        ]);
-
-        \App\Models\Fournisseur::create($request->all());
-
-        return redirect()->route('fournisseurs.index')->with('success', 'Fournisseur created successfully.');
+        //
     }
-    public function edit($id)
-    {
-        $fournisseur = \App\Models\Fournisseur::findOrFail($id);
-        return view('fournisseurs.edit', compact('fournisseur'));
-    }
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:fournisseurs,email,' . $id,
-        ]);
 
-        $fournisseur = \App\Models\Fournisseur::findOrFail($id);
-        $fournisseur->update($request->all());
-
-        return redirect()->route('fournisseurs.index')->with('success', 'Fournisseur updated successfully.');
-    }
-    public function destroy($id)
+    /**
+     * Display the specified resource.
+     */
+    public function show(Fournisseur $fournisseur)
     {
-        $fournisseur = \App\Models\Fournisseur::findOrFail($id);
-        $fournisseur->delete();
-
-        return redirect()->route('fournisseurs.index')->with('success', 'Fournisseur deleted successfully.');
+        //
     }
-    public function show($id)
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Fournisseur $fournisseur)
     {
-        $fournisseur = \App\Models\Fournisseur::findOrFail($id);
-        return view('fournisseurs.show', compact('fournisseur'));
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Fournisseur $fournisseur)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Fournisseur $fournisseur)
+    {
+        //
     }
 }

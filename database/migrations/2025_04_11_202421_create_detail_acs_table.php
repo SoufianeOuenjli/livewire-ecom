@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('detail_acs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('avoir_client_id')->constrained('avoirs_clients')->onDelete('cascade');
+            $table->foreignId('avoir_client_id')->constrained('avoir_clients')->onDelete('cascade');
             $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
             $table->decimal('qte', 10, 2);
             $table->decimal('prix_ht', 10, 2);

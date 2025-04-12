@@ -35,7 +35,7 @@ return new class extends Migration
             $table->foreignId('marque_id')->constrained('marques')->onDelete('cascade');
             $table->foreignId('sous_famille_id')->constrained('sous_familles')->onDelete('cascade');
             $table->foreignId('unite_id')->constrained('unites')->onDelete('cascade');
-            $table->foreignId('conditionnement_id')->constrained('conditionnements')->onDelete('cascade');
+            $table->foreignId('conditionement_id')->constrained('conditionements')->onDelete('cascade');
             $table->foreignId('fournisseur_id')->constrained('fournisseurs')->onDelete('cascade');
             $table->foreignId('article_parent_id')->nullable()->constrained('articles')->onDelete('set null');
             $table->foreignId('article_fils_id')->nullable()->constrained('articles')->onDelete('set null');

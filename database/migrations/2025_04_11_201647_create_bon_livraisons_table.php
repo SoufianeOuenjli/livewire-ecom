@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bon_livraisons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('commande_client_id')->constrained('commandes_clients')->onDelete('cascade');
+            $table->foreignId('commande_client_id')->constrained('commande_clients')->onDelete('cascade');
             $table->foreignId('depot_id')->constrained('depots')->onDelete('cascade');
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->string('n_document');

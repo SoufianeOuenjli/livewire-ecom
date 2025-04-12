@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('article_substitutions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('article_id')->nullable()->constrained('articles')->onDelete('cascade');
+            $table->foreignId('article_substitution_id')->nullable()->constrained('articles')->onDelete('cascade');
             $table->timestamps();
         });
     }

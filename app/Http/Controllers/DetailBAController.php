@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailBA;
 use Illuminate\Http\Request;
 
-class DetailBAController extends Controller
+class DetailBaController extends Controller
 {
     /**
      * Display a listing of the resource.

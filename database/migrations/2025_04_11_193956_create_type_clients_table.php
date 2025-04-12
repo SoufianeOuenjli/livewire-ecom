@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('type_clients', function (Blueprint $table) {
             $table->id();
+            $table->string('type_client');
+            $table->string('couleur')->nullable();
             $table->timestamps();
         });
     }

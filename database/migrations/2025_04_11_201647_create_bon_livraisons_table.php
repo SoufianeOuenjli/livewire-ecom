@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bon_achats', function (Blueprint $table) {
+        Schema::create('bon_livraisons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('commande_fournisseur_id')->constrained('commande_fournisseurs')->onDelete('cascade');
+            $table->foreignId('commande_client_id')->constrained('commandes_clients')->onDelete('cascade');
             $table->foreignId('depot_id')->constrained('depots')->onDelete('cascade');
-            $table->foreignId('fournisseur_id')->constrained('fournisseurs')->onDelete('cascade');
+            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->string('n_document');
             $table->date('date');
             $table->time('heure');
@@ -29,7 +29,8 @@ return new class extends Migration
             $table->boolean('avec_facture')->default(false);
             $table->boolean('verouille')->default(false);
             $table->foreignId('valide_par')->constrained('users')->onDelete('cascade');
-            $table->foreignId('saisie_par')->constrained('users')->onDelete('cascade');
+            $table->foreignId('facture_id')->constrained('factures')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -39,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bon_achats');
+        Schema::dropIfExists('bon_livraisons');
     }
 };

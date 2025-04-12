@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detail_b_l_s', function (Blueprint $table) {
+        Schema::create('detail_bls', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('bon_livraison_id')->constrained('bon_livraisons')->onDelete('cascade');
+            $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
+            $table->decimal('qte', 10, 2);
+            $table->decimal('prix_ht', 10, 2);
+            $table->decimal('tva', 5, 2);
+            $table->decimal('remise', 10, 2)->nullable();
             $table->timestamps();
         });
     }

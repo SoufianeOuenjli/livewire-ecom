@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('etat_reglements', function (Blueprint $table) {
             $table->id();
+            $table->string('etat_reglement');
+            $table->string('couleur')->nullable();
             $table->timestamps();
         });
     }

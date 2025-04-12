@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('avoir_fournisseurs', function (Blueprint $table) {
+        Schema::create('commande_clients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fournisseur_id')->constrained('fournisseurs')->onDelete('cascade');
-            $table->foreignId('depot_id')->constrained('depots')->onDelete('cascade');
+            $table->foreignId('devi_id')->constrained('devis')->onDelete('cascade');
+            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->string('n_document');
             $table->date('date');
             $table->time('heure');
@@ -23,10 +23,6 @@ return new class extends Migration
             $table->decimal('escompte', 8, 2)->nullable();
             $table->string('observation');
             $table->boolean('valide')->default(false);
-            $table->boolean('regle')->default(false);
-            $table->boolean('verouille')->default(false);
-            $table->foreignId('saisie_par')->constrained('users')->onDelete('cascade');
-            $table->foreignId('valide_par')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -36,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('avoir_fournisseurs');
+        Schema::dropIfExists('commande_clients');
     }
 };

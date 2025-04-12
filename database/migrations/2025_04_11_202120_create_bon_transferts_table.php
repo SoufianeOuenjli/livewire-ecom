@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('bon_transferts', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->time('heure');
+            $table->foreignId('depot_source_id')->constrained('depots')->onDelete('cascade');
+            $table->foreignId('depot_destination_id')->constrained('depots')->onDelete('cascade');
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
+            $table->foreignId('updated_by')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

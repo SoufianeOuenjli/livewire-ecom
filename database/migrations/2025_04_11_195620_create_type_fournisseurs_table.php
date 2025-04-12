@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('type_fournisseurs', function (Blueprint $table) {
             $table->id();
+            $table->string('type_fournisseur');
+            $table->string('couleur')->nullable();
             $table->timestamps();
         });
     }

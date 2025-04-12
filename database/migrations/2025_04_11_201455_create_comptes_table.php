@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detail_b_t_s', function (Blueprint $table) {
+        Schema::create('comptes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('banque_id')->nullable()->constrained('banques')->onDelete('cascade');
+            $table->string('compte');
+            $table->decimal('solde', 8, 2)->default(0);
+            $table->boolean('par_defaut')->default(false);
+            $table->boolean('caisse')->default(false);
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detail_b_t_s');
+        Schema::dropIfExists('comptes');
     }
 };

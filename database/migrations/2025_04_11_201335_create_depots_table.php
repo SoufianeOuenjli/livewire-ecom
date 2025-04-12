@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('depots', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('type_depot_id')->constrained('type_depots')->onDelete('cascade');
+            $table->string('depot');
+            $table->string('adresse');
+            $table->string('ville');
+            $table->string('pays');
+            $table->string('tel');
+            $table->string('gsm');
+            $table->string('responsable');
             $table->timestamps();
         });
     }

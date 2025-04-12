@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('type_operation_bancaires', function (Blueprint $table) {
             $table->id();
+            $table->string('type_operation_bancaire');
+            $table->string('debit_credit');
             $table->timestamps();
         });
     }

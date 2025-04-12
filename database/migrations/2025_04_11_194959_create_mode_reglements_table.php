@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('mode_reglements', function (Blueprint $table) {
             $table->id();
+            $table->string('mode_reglement');
+            $table->string('couleur')->nullable();
+            $table->decimal('encaisser',8,2);
+            $table->decimal('avoir',8,2);
             $table->timestamps();
         });
     }

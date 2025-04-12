@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('commande_fournisseurs', function (Blueprint $table) {
+        Schema::create('sous_familles', function (Blueprint $table) {
             $table->id();
+            $table->string('sous_famille');
+            $table->string('photo')->nullable();
+            $table->decimal('tva', 8, 2);
+            $table->decimal('marge', 8, 2);
+            $table->foreignId('famille_id')->constrained('familles')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('commande_fournisseurs');
+        Schema::dropIfExists('sous_familles');
     }
 };

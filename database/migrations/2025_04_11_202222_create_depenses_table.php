@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('depenses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('type_depense_id')->constrained('type_depenses')->onDelete('cascade');
+            $table->date('date');
+            $table->string('libelle');
+            $table->decimal('montant', 8, 2);
+            $table->boolean('verrouille')->default(false);
+            $table->decimal('debit_credit', 8, 2);
             $table->timestamps();
         });
     }

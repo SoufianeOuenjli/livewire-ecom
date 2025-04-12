@@ -11,22 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('avoir_fournisseurs', function (Blueprint $table) {
+        Schema::create('factures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fournisseur_id')->constrained('fournisseurs')->onDelete('cascade');
-            $table->foreignId('depot_id')->constrained('depots')->onDelete('cascade');
-            $table->string('n_document');
+            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
+            $table->string('n_document')->unique();
             $table->date('date');
             $table->time('heure');
-            $table->decimal('tva', 8, 2)->nullable();
-            $table->decimal('remisse', 8, 2)->nullable();
-            $table->decimal('escompte', 8, 2)->nullable();
-            $table->string('observation');
+            $table->decimal('remise', 15, 2)->nullable();
+            $table->decimal('escompte', 15, 2)->nullable();
+            $table->text('observation')->nullable();
             $table->boolean('valide')->default(false);
-            $table->boolean('regle')->default(false);
-            $table->boolean('verouille')->default(false);
             $table->foreignId('saisie_par')->constrained('users')->onDelete('cascade');
             $table->foreignId('valide_par')->constrained('users')->onDelete('cascade');
+            $table->boolean('regle')->default(false);
+            $table->boolean('verrouille')->default(false);
             $table->timestamps();
         });
     }
@@ -36,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('avoir_fournisseurs');
+        Schema::dropIfExists('factures');
     }
 };

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('type_depenses', function (Blueprint $table) {
             $table->id();
+            $table->string('type_depense');
+            $table->decimal('debit_credit',8,2);
             $table->timestamps();
         });
     }

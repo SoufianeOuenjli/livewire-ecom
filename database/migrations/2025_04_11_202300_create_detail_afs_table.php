@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stocks', function (Blueprint $table) {
+        Schema::create('detail_afs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('depot_id')->constrained('depots')->onDelete('cascade');
+            $table->foreignId('avoir_fournisseur_id')->constrained('avoir_fournisseurs')->onDelete('cascade');
             $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
-            $table->decimal('stock_initiale', 8, 2)->default(0);
-            $table->decimal('stock', 8, 2)->default(0);
+            $table->decimal('qte', 10, 2);
+            $table->decimal('prix_ht', 10, 2);
+            $table->decimal('tva', 5, 2);
+            $table->decimal('remise', 10, 2)->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('detail_a_f_s');
     }
 };

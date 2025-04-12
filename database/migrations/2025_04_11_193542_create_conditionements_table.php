@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('conditionements', function (Blueprint $table) {
             $table->id();
+            $table->string('conditionnement');
+            $table->decimal('nbr_unite', 8,2);
             $table->timestamps();
         });
     }

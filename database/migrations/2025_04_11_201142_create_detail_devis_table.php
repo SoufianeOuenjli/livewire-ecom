@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('detail_devis', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('devis_id')->constrained('devis')->onDelete('cascade');
+            $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
+            $table->integer('qte');
+            $table->decimal('prix_ht', 10, 2);
+            $table->decimal('tva', 5, 2);
+            $table->decimal('remise', 10, 2)->nullable();
             $table->timestamps();
         });
     }

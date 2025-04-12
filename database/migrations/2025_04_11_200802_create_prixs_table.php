@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bon_livraisons', function (Blueprint $table) {
+        Schema::create('prixs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
+            $table->foreignId('type_client_id')->constrained('type_clients')->onDelete('cascade');
+            $table->decimal('prix_ht', 8, 2);
+            $table->decimal('tva', 8, 2);
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bon_livraisons');
+        Schema::dropIfExists('prixes');
     }
 };

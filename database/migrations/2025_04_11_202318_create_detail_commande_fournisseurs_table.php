@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('detail_commande_fournisseurs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('commande_fournisseur_id')->constrained('commande_fournisseurs')->onDelete('cascade');
+            $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
+            $table->decimal('qte', 10, 2);
+            $table->decimal('prix_ht', 10, 2);
+            $table->decimal('tva', 5, 2);
+            $table->decimal('remise', 10, 2)->nullable();
             $table->timestamps();
         });
     }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('banques', function (Blueprint $table) {
             $table->id();
+            $table->string('banque');
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

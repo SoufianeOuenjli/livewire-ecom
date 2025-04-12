@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('operation_bancaires', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->foreignId(column: 'compte_id')->constrained('comptes')->onDelete('cascade');
+            $table->foreignId(column: 'type_operation_bancaire_id')->constrained('type_operation_bancaires')->onDelete('cascade');
+            $table->string('operation_bancaire');
+            $table->decimal('montant', 8, 2);
+            $table->decimal('debit_credit', 8, 2);
             $table->timestamps();
         });
     }

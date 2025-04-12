@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailAF;
 use Illuminate\Http\Request;
 
-class DetailAFController extends Controller
+class DetailAfController extends Controller
 {
     /**
      * Display a listing of the resource.

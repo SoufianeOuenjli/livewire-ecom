@@ -13,6 +13,20 @@ return new class extends Migration
     {
         Schema::create('reglement_fournisseurs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('fournisseur_id')->constrained('fournisseurs')->onDelete('cascade');
+            $table->foreignId('mode_reglement_id')->constrained('mode_reglements')->onDelete('cascade');
+            $table->date('date_reglement');
+            $table->decimal('montant', 8, 2);
+            $table->string('libelle')->nullable();
+            $table->decimal('encaisser',8,2);
+            $table->foreignId('etat_reglement_id')->constrained('etat_reglements')->onDelete('cascade');
+            $table->text('observation')->nullable();
+            $table->date('date_echeance')->nullable();
+            $table->boolean('bloque')->default(false);
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
+            $table->foreignId('updated_by')->constrained('users')->onDelete('cascade');
+            $table->foreignId('valide_par')->constrained('users')->onDelete('cascade');
+            $table->foreignId('compte_id')->constrained('comptes')->onDelete('cascade');
             $table->timestamps();
         });
     }

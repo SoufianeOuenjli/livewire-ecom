@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('familles', function (Blueprint $table) {
             $table->id();
+            $table->string('famille');
+            $table->string('photo')->nullable();
+            $table->decimal('tva', 8, 2);
+            $table->decimal('marge', 8, 2);
             $table->timestamps();
         });
     }

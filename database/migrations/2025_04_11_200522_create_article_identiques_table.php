@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('article_identiques', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('article_id')->nullable()->constrained('articles')->onDelete('cascade');
+            $table->foreignId('article_identique_id')->nullable()->constrained('articles')->onDelete('cascade');
             $table->timestamps();
         });
     }

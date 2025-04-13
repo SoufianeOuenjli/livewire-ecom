@@ -1,0 +1,19 @@
+@livewireScripts
+@livewireNavigated
+<!-- jQuery -->
+<script src="{{asset('assets/js/jquery-3.2.1.min.js')}}" data-navigate-once></script>
+
+<!-- Bootstrap Core JS -->
+<script src="{{asset('assets/js/popper.min.js')}}" data-navigate-once></script>
+<script src="{{asset('assets/js/bootstrap.min.js')}}" data-navigate-once></script>
+
+<!-- Slimscroll JS -->
+<script src="{{asset('assets/plugins/slimscroll/jquery.slimscroll.min.js')}}" data-navigate-once></script>
+
+<script src="{{asset('assets/plugins/raphael/raphael.min.js')}}" data-navigate-once></script>
+<script src="{{asset('assets/plugins/morris/morris.min.js')}}" data-navigate-once></script>
+<script src="{{asset('assets/js/chart.morris.js')}}" data-navigate-once></script>
+
+<!-- Custom JS -->
+<script src="{{asset('assets/js/script.js')}}" data-navigate-once></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous" data-navigate-once></script>

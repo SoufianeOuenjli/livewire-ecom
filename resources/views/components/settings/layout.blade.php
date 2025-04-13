@@ -1,20 +1,40 @@
-<div class="flex items-start max-md:flex-col">
-    <div class="me-10 w-full pb-4 md:w-[220px]">
-        <flux:navlist>
-            <flux:navlist.item :href="route('settings.profile')" wire:navigate>{{ __('Profile') }}</flux:navlist.item>
-            <flux:navlist.item :href="route('settings.password')" wire:navigate>{{ __('Password') }}</flux:navlist.item>
-            <flux:navlist.item :href="route('settings.appearance')" wire:navigate>{{ __('Appearance') }}</flux:navlist.item>
-        </flux:navlist>
-    </div>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Left Navigation -->
+        <div class="col-md-3 col-12 mb-4">
+            <div class="list-group">
+                <a href="{{ route('settings.profile') }}"
+                    class="list-group-item list-group-item-action {{ request()->routeIs('settings.profile') ? 'active' : '' }}"
+                    wire:navigate>
+                    {{ __('Profile') }}
+                </a>
+                <a href="{{ route('settings.password') }}"
+                    class="list-group-item list-group-item-action {{ request()->routeIs('settings.password') ? 'active' : '' }}"
+                    wire:navigate>
+                    {{ __('Password') }}
+                </a>
+            </div>
+        </div>
 
-    <flux:separator class="md:hidden" />
+        <!-- Separator (Mobile Only) -->
+        <div class="col-12 d-block d-md-none">
+            <hr class="my-4">
+        </div>
 
-    <div class="flex-1 self-stretch max-md:pt-6">
-        <flux:heading>{{ $heading ?? '' }}</flux:heading>
-        <flux:subheading>{{ $subheading ?? '' }}</flux:subheading>
+        <!-- Content Area -->
+        <div class="col-md-9 col-12">
+            <div class="mb-4">
+                <h3 class="mb-1">{{ $heading ?? '' }}</h3>
+                <p class="text-muted">{{ $subheading ?? '' }}</p>
+            </div>
 
-        <div class="mt-5 w-full max-w-lg">
-            {{ $slot }}
+            <div class="card">
+                <div class="card-body">
+                    <div class="mw-600">
+                        {{ $slot }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
